@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "FPQuc0MACURkBST5bLVTOh0YznwieLsqyntgP/mKBGs=",
+  "Source": "web-shop-api",
+  "BasePath": "_content/web-shop-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
