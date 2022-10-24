@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using web_shop_api.Data;
 using web_shop_api.Entities;
 
@@ -9,25 +10,25 @@ namespace web_shop_api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly StoreContext context;
+        private readonly StoreContext _context;
 
         public ProductsController(StoreContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         [HttpGet]
-        public ActionResult<List<Product>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var products = context.products.ToList();
+            var products = await _context.products.ToListAsync();
 
             return Ok(products);
         }
 
         [HttpGet("{id}")] // api/products/3
-        public ActionResult<Product> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return context.products.Find(id);
+            return await _context.products.FindAsync(id);
         }
 
     }
