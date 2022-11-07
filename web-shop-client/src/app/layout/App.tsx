@@ -1,4 +1,6 @@
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import Catalog from "../../features/catalog/Catalog";
 import { Product } from "../models/product";
 
 function App() {
@@ -10,7 +12,7 @@ function App() {
     .then(data => setProducts(data))
   }, [])
 
-  function AddProduct() {
+  function addProduct() {
     setProducts(prevState => [...prevState,
       {
         id: prevState.length + 101,
@@ -18,20 +20,16 @@ function App() {
         price: (prevState.length * 100) + 100,
         brand: 'some brand',
         description: 'some description',
-        pictureUrl: 'http//picsum.photos/200'
+        pictureUrl: 'http://picsum.photos/200'
     }])
   }
 
   return (
-    <div>
-      <h1>Web-shop</h1>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}> {product.name} - {product.price}</li>
-        ))}
-      </ul>
-      <button onClick={AddProduct}>Add product</button>
-    </div>
+    <>
+      <Typography variant="h1">Web-shop</Typography>
+      <Catalog products={products} addProduct={addProduct}/>
+      
+    </>
   );
 }
 
