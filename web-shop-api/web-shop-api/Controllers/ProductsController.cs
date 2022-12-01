@@ -6,9 +6,7 @@ using web_shop_api.Entities;
 namespace web_shop_api.Controllers
 {
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         private readonly StoreContext _context;
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using web_shop_api.Data;
+using web_shop_api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ var app = builder.Build();
 //}
 
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
