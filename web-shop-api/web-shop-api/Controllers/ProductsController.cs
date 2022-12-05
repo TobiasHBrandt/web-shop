@@ -26,7 +26,14 @@ namespace web_shop_api.Controllers
         [HttpGet("{id}")] // api/products/3
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return await _context.products.FindAsync(id);
+            var product = await _context.products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return product;
         }
 
     }
