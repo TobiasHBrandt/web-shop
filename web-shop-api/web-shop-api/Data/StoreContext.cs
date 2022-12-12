@@ -10,5 +10,6 @@ namespace web_shop_api.Data
         }
 
         public DbSet<Product>? products { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
