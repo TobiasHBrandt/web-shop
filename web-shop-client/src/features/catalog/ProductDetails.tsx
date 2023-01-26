@@ -8,14 +8,15 @@ import LoadingComponent from "../../app/layout/LoadingCompnent";
 import { Product } from "../../app/models/product";
 import { useAppDispatch, useAppSelector } from "../../app/Store/configureStore";
 import { addBasketItemAsync, removeBasketItemAsync } from "../basket/basketSlice";
+import { fetchProductAsync, productSelectors } from "./catalogSlice";
 
 export default function ProductDetails() {
 
     const {id} = useParams<{id: string}>();
     const {basket, status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
-    const [product, setProduct] = useState<Product | null>(null);
-    const [loading, setLoading] = useState(true);
+    const product = useAppSelector(state => productSelectors.selectById(state, id))
+    const {status: productStatus} = useAppSelector(state => state.catalog);
     const [quantity, setQuantity] = useState(0);
     const item = basket?.items.find(i => i.productId === product?.id);
 
@@ -25,11 +26,10 @@ export default function ProductDetails() {
         if (item) {
             setQuantity(item.quantity);
         }
-        agent.Catalog.details(parseInt(id))
-        .then(response => setProduct(response))
-        .catch(error => console.log(error))
-        .finally(() => setLoading(false))
-      }, [id, item])
+        if (!product) {
+            dispatch(fetchProductAsync(parseInt(id)))
+        }
+      }, [id, item, dispatch, product])
 
       function handleInputChange(event: any) {
         if (event.target.value >= 0) {
@@ -47,7 +47,7 @@ export default function ProductDetails() {
         }
       }
 
-      if (loading) {
+      if (productStatus.includes('pending')) {
         return <LoadingComponent message="Loading product..."/>
       }
 
