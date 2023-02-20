@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using web_shop_api.Data;
 using web_shop_api.Entities;
+using web_shop_api.Extensions;
 
 namespace web_shop_api.Controllers
 {
@@ -16,11 +17,17 @@ namespace web_shop_api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts(string? orderBy, 
+            string? searchTerm, string? brands, string? types)
         {
-            var products = await _context.products.ToListAsync();
+            //store the query in the variable
+            var query = _context.products
+                .Sort(orderBy)
+                .Search(searchTerm)
+                .Filter(brands, types)
+                .AsQueryable();
 
-            return Ok(products);
+            return await query.ToListAsync();
         }
 
         [HttpGet("{id}")] // api/products/3
