@@ -1,0 +1,10 @@
+﻿namespace web_shop_api.RequestHelpers
+{
+    public class ProductParams : PaginationParams
+    {
+        public string? OrderBy { get; set; }
+        public string? Search { get; set; }
+        public string? Types { get; set; }
+        public string? Brands { get; set; }
+    }
+}
