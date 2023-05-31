@@ -60,3 +60,9 @@ D:\Github projekt\web-shop\web-shop-api\web-shop-api\obj\Debug\net6.0\web-shop-a
 D:\Github projekt\web-shop\web-shop-api\web-shop-api\obj\Debug\net6.0\ref\web-shop-api.dll
 D:\Github projekt\web-shop\web-shop-api\web-shop-api\obj\Debug\net6.0\web-shop-api.pdb
 D:\Github projekt\web-shop\web-shop-api\web-shop-api\obj\Debug\net6.0\web-shop-api.genruntimeconfig.cache
+D:\Github projekt\web-shop\web-shop-api\web-shop-api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Github projekt\web-shop\web-shop-api\web-shop-api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Github projekt\web-shop\web-shop-api\web-shop-api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Github projekt\web-shop\web-shop-api\web-shop-api\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Github projekt\web-shop\web-shop-api\web-shop-api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\Github projekt\web-shop\web-shop-api\web-shop-api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

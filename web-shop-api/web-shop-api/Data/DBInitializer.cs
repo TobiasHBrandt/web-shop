@@ -1,12 +1,35 @@
 ﻿using web_shop_api.Entities;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace web_shop_api.Data
 {
     public static class DBInitializer
     {
-        public static void Initialize(StoreContext context)
+        public static async Task Initialize(StoreContext context, UserManager<User> userManager)
         {
+            // check if there are users in the database
+            if (!userManager.Users.Any())
+            {
+                var user = new User
+                {
+                    UserName = "bob",
+                    Email = "bob@test.com"
+                };
+
+                await userManager.CreateAsync(user, "Pa$$w0rd");
+                await userManager.AddToRoleAsync(user, "Member");
+
+                var admin = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@test.com"
+                };
+
+                await userManager.CreateAsync(admin, "Pa$$w0rd");
+                await userManager.AddToRolesAsync(admin, new[] { "Member", "Admin" });
+            }
+
             if (context.products.Any())
             {
                 return;
